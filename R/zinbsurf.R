@@ -74,6 +74,8 @@ setMethod("zinbsurf", "SummarizedExperiment",
               sample_idx <- sample(seq_len(NCOL(Y)), size = floor(NCOL(Y) * prop_fit))
               out_idx <- setdiff(seq_len(NCOL(Y)), sample_idx)
 
+              Y <- Y[rowSums(assay(Y)[,sample_idx]) > 0, ]
+
               Ysub <- Y[,sample_idx]
               Yout <- Y[,out_idx]
 
